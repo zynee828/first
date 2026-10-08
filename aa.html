@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveX - Car Collection</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0b0d10;
+    color:white;
+}
+
+/* NAVBAR */
+nav{
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:#11151a;
+    border-bottom:1px solid #252a30;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#fff;
+}
+
+.logo span{
+    color:#00d4ff;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00d4ff;
+}
+
+/* HERO */
+.hero{
+    min-height:420px;
+    display:flex;
+    align-items:center;
+    padding:60px 7%;
+    background:
+    linear-gradient(90deg,#0b0d10 20%,rgba(11,13,16,.7),rgba(11,13,16,.1)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=90");
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:600px;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:1.05;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#00d4ff;
+}
+
+.hero p{
+    color:#bbb;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-block;
+    background:#00d4ff;
+    color:#061014;
+    padding:13px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px rgba(0,212,255,.3);
+}
+
+/* SECTION */
+.container{
+    width:86%;
+    margin:auto;
+    padding:55px 0;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    font-size:34px;
+}
+
+.search{
+    background:#151a20;
+    border:1px solid #30363d;
+    color:white;
+    padding:12px 18px;
+    border-radius:25px;
+    outline:none;
+    width:230px;
+}
+
+/* CARS */
+.cars{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:#12161b;
+    border:1px solid #252b32;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#00d4ff;
+    box-shadow:0 15px 40px rgba(0,212,255,.12);
+}
+
+.car-img{
+    height:220px;
+    overflow:hidden;
+    position:relative;
+}
+
+.car-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.card:hover img{
+    transform:scale(1.08);
+}
+
+.tag{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#00d4ff;
+    color:#061014;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.price{
+    color:#00d4ff;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.details{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+}
+
+.details span{
+    background:#1b2128;
+    padding:7px 10px;
+    border-radius:7px;
+    color:#bbb;
+    font-size:13px;
+}
+
+.card-content p{
+    color:#999;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+.card-btn{
+    width:100%;
+    border:1px solid #00d4ff;
+    background:transparent;
+    color:#00d4ff;
+    padding:11px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.card-btn:hover{
+    background:#00d4ff;
+    color:#061014;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    background:#080a0d;
+    color:#777;
+    border-top:1px solid #222;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .cars{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+}
+
+@media(max-width:600px){
+    nav{
+        padding:0 5%;
+    }
+
+    nav .links{
+        display:none;
+    }
+
+    .hero{
+        min-height:500px;
+        padding:40px 7%;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .search{
+        width:100%;
+    }
+
+    .cars{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Drive<span>X</span></div>
+
+    <div class="links">
+        <a href="#">Home</a>
+        <a href="#cars">Cars</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Find Your <span>Dream Car</span></h1>
+
+        <p>
+            Explore our collection of premium cars with modern design,
+            powerful performance and comfortable driving experience.
+        </p>
+
+        <a href="#cars" class="btn">Explore Cars</a>
+    </div>
+</section>
+
+
+<!-- CARS -->
+<section class="container" id="cars">
+
+    <div class="section-title">
+        <h2>Featured Cars</h2>
+
+        <input
+            type="text"
+            id="search"
+            class="search"
+            placeholder="Search car..."
+        >
+    </div>
+
+
+    <div class="cars" id="carList">
+
+        <!-- CAR 1 -->
+        <div class="card" data-name="Porsche 911">
+            <div class="car-img">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85">
+                <div class="tag">Premium</div>
+            </div>
+
+            <div class="card-content">
+                <h3>Porsche 911</h3>
+
+                <div class="price">PKR 5.8 Crore</div>
+
+                <div class="details">
+                    <span>⚡ 3.0L</span>
+                    <span>⚙ Automatic</span>
+                    <span>🏁 2025</span>
+                </div>
+
+                <p>
+                    A luxury sports car with powerful performance,
+                    premium interior and iconic design.
+                </p>
+
+                <button class="card-btn" onclick="showCar('Porsche 911')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CAR 2 -->
+        <div class="card" data-name="BMW M4">
+            <div class="car-img">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=85">
+                <div class="tag">Sport</div>
+            </div>
+
+            <div class="card-content">
+                <h3>BMW M4</h3>
+
+                <div class="price">PKR 3.2 Crore</div>
+
+                <div class="details">
+                    <span>⚡ 3.0L Turbo</span>
+                    <span>⚙ Automatic</span>
+                    <span>🏁 2025</span>
+                </div>
+
+                <p>
+                    High-performance BMW with aggressive styling,
+                    advanced technology and excellent handling.
+                </p>
+
+                <button class="card-btn" onclick="showCar('BMW M4')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CAR 3 -->
+        <div class="card" data-name="Mercedes AMG">
+            <div class="car-img">
+                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85">
+                <div class="tag">Luxury</div>
+            </div>
+
+            <div class="card-content">
+                <h3>Mercedes AMG</h3>
+
+                <div class="price">PKR 4.5 Crore</div>
+
+                <div class="details">
+                    <span>⚡ 4.0L V8</span>
+                    <span>⚙ Automatic</span>
+                    <span>🏁 2025</span>
+                </div>
+
+                <p>
+                    Elegant luxury combined with impressive power,
+                    comfort and modern German engineering.
+                </p>
+
+                <button class="card-btn" onclick="showCar('Mercedes AMG')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CAR 4 -->
+        <div class="card" data-name="Audi R8">
+            <div class="car-img">
+                <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=85">
+                <div class="tag">Supercar</div>
+            </div>
+
+            <div class="card-content">
+                <h3>Audi R8</h3>
+
+                <div class="price">PKR 4.9 Crore</div>
+
+                <div class="details">
+                    <span>⚡ 5.2L V10</span>
+                    <span>⚙ Automatic</span>
+                    <span>🏁 2024</span>
+                </div>
+
+                <p>
+                    A dramatic V10 supercar offering incredible
+                    acceleration and a premium driving experience.
+                </p>
+
+                <button class="card-btn" onclick="showCar('Audi R8')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CAR 5 -->
+        <div class="card" data-name="Toyota Supra">
+            <div class="car-img">
+                <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=900&q=85">
+                <div class="tag">JDM</div>
+            </div>
+
+            <div class="card-content">
+                <h3>Toyota Supra</h3>
+
+                <div class="price">PKR 2.2 Crore</div>
+
+                <div class="details">
+                    <span>⚡ 3.0L Turbo</span>
+                    <span>⚙ Automatic</span>
+                    <span>🏁 2024</span>
+                </div>
+
+                <p>
+                    Stylish Japanese sports car with strong performance
+                    and a legendary driving character.
+                </p>
+
+                <button class="card-btn" onclick="showCar('Toyota Supra')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CAR 6 -->
+        <div class="card" data-name="Range Rover">
+            <div class="car-img">
+                <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=85">
+                <div class="tag">SUV</div>
+            </div>
+
+            <div class="card-content">
+                <h3>Range Rover</h3>
+
+                <div class="price">PKR 6.5 Crore</div>
+
+                <div class="details">
+                    <span>⚡ 4.4L V8</span>
+                    <span>⚙ Automatic</span>
+                    <span>🏁 2025</span>
+                </div>
+
+                <p>
+                    Premium SUV combining luxury, comfort,
+                    technology and powerful road presence.
+                </p>
+
+                <button class="card-btn" onclick="showCar('Range Rover')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="container" id="about">
+    <div class="section-title">
+        <h2>About DriveX</h2>
+    </div>
+
+    <p style="color:#aaa;line-height:1.8;max-width:800px;">
+        DriveX is a modern car showcase website where you can explore
+        different vehicles, compare basic specifications and discover
+        your next dream car.
+    </p>
+</section>
+
+
+<!-- CONTACT -->
+<section class="container" id="contact">
+    <div class="section-title">
+        <h2>Contact Us</h2>
+    </div>
+
+    <p style="color:#aaa;">
+        📞 +92 300 1234567
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+        📍 Karachi, Pakistan
+    </p>
+</section>
+
+
+<footer>
+    © 2026 DriveX — All Rights Reserved
+</footer>
+
+
+<script>
+
+/* SEARCH */
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+search.addEventListener("input", function(){
+
+    const value = this.value.toLowerCase();
+
+    cards.forEach(card => {
+
+        const name = card.dataset.name.toLowerCase();
+
+        if(name.includes(value)){
+            card.style.display = "block";
+        }else{
+            card.style.display = "none";
+        }
+
+    });
+
+});
+
+
+/* DETAILS BUTTON */
+function showCar(carName){
+
+    alert(
+        "🚘 " + carName +
+        "\n\nFor more information, contact DriveX Karachi."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
